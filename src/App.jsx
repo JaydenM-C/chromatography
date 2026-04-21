@@ -866,7 +866,7 @@ ${swatchRows}
           font-family: 'Fraunces', serif;
           font-variation-settings: 'opsz' 144, 'SOFT' 0;
           font-weight: 500;
-          font-size: 18px;
+          font-size: 36px;
           letter-spacing: -0.01em;
         }
         .brand-sub {
