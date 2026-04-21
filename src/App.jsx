@@ -151,6 +151,24 @@ const kmeansPlusPlus = (points, k, maxIter = 24) => {
 let idCounter = 0;
 const newId = () => `s${++idCounter}`;
 
+function KofiButton() {
+  const containerRef = useRef(null);
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://storage.ko-fi.com/cdn/widget/Widget_2.js';
+    script.type = 'text/javascript';
+    script.onload = () => {
+      if (window.kofiwidget2 && containerRef.current) {
+        window.kofiwidget2.init('Support me', '#8A3A24', 'Z8Z61Y87TQ');
+        containerRef.current.innerHTML = window.kofiwidget2.getHTML();
+      }
+    };
+    document.body.appendChild(script);
+    return () => { document.body.removeChild(script); };
+  }, []);
+  return <div ref={containerRef} className="kofi-container" />;
+}
+
 export default function App() {
   const [image, setImage] = useState(null); // { el, naturalW, naturalH, url }
   const [samples, setSamples] = useState([]); // [{id, rgb, L, C, h, source, x, y, weight}]
@@ -654,18 +672,18 @@ export default function App() {
     font-family: Georgia, 'Times New Roman', serif;
     max-width: 900px; margin: 0 auto;
   }
-  h1 { font-weight: 500; letter-spacing: -0.01em; margin: 0 0 8px; font-size: 32px; }
-  .description { color: var(--muted); font-size: 15px; line-height: 1.6; max-width: 60ch; margin: 0 0 32px; font-style: italic; }
+  h1 { font-weight: 500; letter-spacing: -0.01em; margin: 0 0 8px; font-size: 38.4px; }
+  .description { color: var(--muted); font-size: 18px; line-height: 1.6; max-width: 60ch; margin: 0 0 32px; font-style: italic; }
   .source { margin: 0 0 40px; }
   .source img { width: 100%; height: auto; display: block; border: 1px solid var(--ink); }
   .palette { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 8px; }
   .swatch { border: 1px solid var(--rule); background: #FBF8F2; }
   .chip { height: 80px; }
-  .meta { padding: 10px 12px 12px; font-family: 'SF Mono', Menlo, monospace; font-size: 11px; line-height: 1.5; }
-  .idx { color: var(--muted); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
-  .hex { color: var(--ink); font-size: 13px; font-weight: 600; letter-spacing: 0.03em; }
+  .meta { padding: 10px 12px 12px; font-family: 'SF Mono', Menlo, monospace; font-size: 13.2px; line-height: 1.5; }
+  .idx { color: var(--muted); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
+  .hex { color: var(--ink); font-size: 15.6px; font-weight: 600; letter-spacing: 0.03em; }
   .rgb, .oklch { color: var(--muted); }
-  footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--rule); color: var(--muted); font-size: 12px; }
+  footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--rule); color: var(--muted); font-size: 14.4px; }
 </style>
 </head>
 <body>
@@ -830,7 +848,7 @@ ${swatchRows}
           background: var(--paper);
           color: var(--ink);
           font-family: 'Instrument Sans', sans-serif;
-          font-size: 13px;
+          font-size: 15.6px;
           line-height: 1.5;
           -webkit-font-smoothing: antialiased;
           overflow: hidden;
@@ -866,12 +884,12 @@ ${swatchRows}
           font-family: 'Fraunces', serif;
           font-variation-settings: 'opsz' 144, 'SOFT' 0;
           font-weight: 500;
-          font-size: 36px;
+          font-size: 43.2px;
           letter-spacing: -0.01em;
         }
         .brand-sub {
           font-family: 'Geist Mono', monospace;
-          font-size: 10px;
+          font-size: 12px;
           color: var(--ink-muted);
           letter-spacing: 0.12em;
           text-transform: uppercase;
@@ -883,7 +901,7 @@ ${swatchRows}
           align-items: center;
           gap: 6px;
           padding: 7px 12px;
-          font-size: 12px;
+          font-size: 14.4px;
           font-weight: 500;
           border: 1px solid var(--rule-strong);
           border-radius: 2px;
@@ -933,14 +951,14 @@ ${swatchRows}
           font-family: 'Fraunces', serif;
           font-variation-settings: 'opsz' 72;
           font-weight: 400;
-          font-size: 24px;
+          font-size: 28.8px;
           margin: 0;
           color: var(--ink);
           letter-spacing: -0.01em;
         }
-        .drop-zone p { margin: 0; font-size: 13px; max-width: 36ch; line-height: 1.55; }
+        .drop-zone p { margin: 0; font-size: 15.6px; max-width: 36ch; line-height: 1.55; }
         .drop-zone .tick {
-          font-family: 'Geist Mono', monospace; font-size: 10px;
+          font-family: 'Geist Mono', monospace; font-size: 12px;
           letter-spacing: 0.14em; text-transform: uppercase;
           color: var(--ink-faint);
         }
@@ -966,7 +984,7 @@ ${swatchRows}
           padding: 6px 6px 8px;
           box-shadow: 0 4px 12px rgba(0,0,0,0.15);
           font-family: 'Geist Mono', monospace;
-          font-size: 10px;
+          font-size: 12px;
           line-height: 1.4;
         }
         .loupe canvas { display: block; border: 1px solid var(--rule-strong); margin-bottom: 6px; }
@@ -992,7 +1010,7 @@ ${swatchRows}
         }
         .section-kicker {
           font-family: 'Geist Mono', monospace;
-          font-size: 10px;
+          font-size: 12px;
           letter-spacing: 0.14em;
           text-transform: uppercase;
           color: var(--ink-muted);
@@ -1001,7 +1019,7 @@ ${swatchRows}
           justify-content: space-between;
           align-items: baseline;
         }
-        .section-kicker .right { color: var(--ink-faint); font-size: 9.5px; }
+        .section-kicker .right { color: var(--ink-faint); font-size: 11.4px; }
 
         /* extract controls */
         .k-control {
@@ -1011,8 +1029,8 @@ ${swatchRows}
           align-items: center;
           margin-bottom: 14px;
         }
-        .k-control .lbl { font-size: 12px; color: var(--ink-muted); }
-        .k-control .val { font-family: 'Geist Mono', monospace; font-size: 13px; min-width: 2ch; text-align: right; }
+        .k-control .lbl { font-size: 14.4px; color: var(--ink-muted); }
+        .k-control .val { font-family: 'Geist Mono', monospace; font-size: 15.6px; min-width: 2ch; text-align: right; }
         input[type=range] {
           -webkit-appearance: none;
           appearance: none;
@@ -1089,7 +1107,7 @@ ${swatchRows}
         }
         .sort-btn {
           font-family: 'Geist Mono', monospace;
-          font-size: 9.5px;
+          font-size: 11.4px;
           text-transform: uppercase;
           letter-spacing: 0.08em;
           color: var(--ink-muted);
@@ -1103,7 +1121,7 @@ ${swatchRows}
         .swatch .meta {
           padding: 5px 7px 6px;
           font-family: 'Geist Mono', monospace;
-          font-size: 10px;
+          font-size: 12px;
           display: flex;
           justify-content: space-between;
           gap: 4px;
@@ -1114,7 +1132,7 @@ ${swatchRows}
           position: absolute;
           top: 4px; right: 4px;
           font-family: 'Geist Mono', monospace;
-          font-size: 8.5px;
+          font-size: 10.2px;
           letter-spacing: 0.1em;
           text-transform: uppercase;
           padding: 1px 4px;
@@ -1141,10 +1159,20 @@ ${swatchRows}
           text-align: center;
           padding: 24px 8px;
           color: var(--ink-faint);
-          font-size: 12px;
+          font-size: 14.4px;
           border: 1px dashed var(--rule);
         }
         .palette-empty em { font-style: italic; color: var(--ink-muted); }
+
+        /* support */
+        .support-text {
+          font-size: 13.2px;
+          color: var(--ink-muted);
+          line-height: 1.5;
+          margin: 0 0 10px;
+        }
+        .kofi-container { display: flex; }
+        .kofi-container a { display: inline-block; }
 
         /* adjustments */
         .adjust-preview {
@@ -1158,7 +1186,7 @@ ${swatchRows}
           position: absolute;
           bottom: 6px; left: 8px;
           font-family: 'Geist Mono', monospace;
-          font-size: 10px;
+          font-size: 12px;
           padding: 2px 5px;
           background: rgba(251, 248, 242, 0.9);
           color: var(--ink);
@@ -1173,7 +1201,7 @@ ${swatchRows}
         }
         .hex-input {
           font-family: 'Geist Mono', monospace;
-          font-size: 13px;
+          font-size: 15.6px;
           padding: 6px 10px;
           border: 1px solid var(--rule-strong);
           background: var(--surface);
@@ -1193,14 +1221,14 @@ ${swatchRows}
         }
         .slider-row .axis {
           font-family: 'Geist Mono', monospace;
-          font-size: 10px;
+          font-size: 12px;
           text-transform: uppercase;
           letter-spacing: 0.1em;
           color: var(--ink-muted);
         }
         .slider-row .num {
           font-family: 'Geist Mono', monospace;
-          font-size: 12px;
+          font-size: 14.4px;
           text-align: right;
           color: var(--ink);
         }
@@ -1214,7 +1242,7 @@ ${swatchRows}
           border-top: 1px dashed var(--rule);
         }
         .adjust-footer .hint {
-          font-size: 10.5px;
+          font-size: 12.6px;
           color: var(--ink-muted);
           line-height: 1.45;
           flex: 1;
@@ -1224,7 +1252,7 @@ ${swatchRows}
           position: absolute;
           top: 6px; right: 6px;
           font-family: 'Geist Mono', monospace;
-          font-size: 9px;
+          font-size: 10.8px;
           letter-spacing: 0.12em;
           text-transform: uppercase;
           padding: 2px 6px;
@@ -1244,7 +1272,7 @@ ${swatchRows}
           border: 1px solid var(--rule);
           padding: 6px 7px;
           font-family: 'Geist Mono', monospace;
-          font-size: 10px;
+          font-size: 12px;
           text-align: center;
         }
         .apca-cell .bg-chip {
@@ -1254,10 +1282,10 @@ ${swatchRows}
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 9px;
+          font-size: 10.8px;
         }
-        .apca-cell .val { font-size: 13px; color: var(--ink); font-weight: 500; }
-        .apca-cell .lbl { color: var(--ink-muted); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 2px; }
+        .apca-cell .val { font-size: 15.6px; color: var(--ink); font-weight: 500; }
+        .apca-cell .lbl { color: var(--ink-muted); font-size: 10.8px; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 2px; }
 
         /* extracting overlay */
         .extracting-overlay {
@@ -1269,7 +1297,7 @@ ${swatchRows}
           justify-content: center;
           font-family: 'Fraunces', serif;
           font-variation-settings: 'opsz' 72;
-          font-size: 16px;
+          font-size: 19.2px;
           color: var(--ink);
           z-index: 50;
           letter-spacing: -0.005em;
@@ -1290,7 +1318,7 @@ ${swatchRows}
           border: 1px solid var(--accent);
           color: var(--accent);
           font-family: 'Geist Mono', monospace;
-          font-size: 11px;
+          font-size: 13.2px;
           letter-spacing: 0.02em;
           max-width: 44ch;
           box-shadow: 0 2px 10px rgba(0,0,0,0.08);
@@ -1318,27 +1346,47 @@ ${swatchRows}
           border-top: 1px solid var(--rule-strong);
           background: var(--panel);
           padding: 14px 24px;
-          font-size: 11px;
+          font-size: 13.2px;
           line-height: 1.55;
           color: var(--ink-muted);
           letter-spacing: -0.003em;
-          max-height: 140px;
-          overflow-y: auto;
+          display: flex;
+          gap: 40px;
+          align-items: flex-start;
         }
-        .footer-body { max-width: 92ch; margin: 0; }
+        .footer-body { margin: 0; flex: 2; min-width: 0; }
         .footer-body b {
           color: var(--ink);
           font-weight: 500;
         }
         .footer-body code {
           font-family: 'Geist Mono', monospace;
-          font-size: 10px;
+          font-size: 12px;
           color: var(--ink);
           background: var(--surface);
           padding: 1px 4px;
           border: 1px solid var(--rule);
           border-radius: 1px;
         }
+        .footer-bio {
+          flex: 1;
+          min-width: 0;
+          border-left: 1px solid var(--rule);
+          padding-left: 40px;
+          margin: 0;
+        }
+        .footer-bio a {
+          color: var(--ink-muted);
+          text-decoration: underline;
+          text-underline-offset: 2px;
+        }
+        .footer-bio a:hover { color: var(--ink); }
+        .footer-bio .footer-links {
+          margin-top: 6px;
+          font-size: 12px;
+          color: var(--ink-faint);
+        }
+        .footer-bio .footer-links a { color: var(--ink-faint); }
 
         /* export modal */
         .modal-backdrop {
@@ -1372,14 +1420,14 @@ ${swatchRows}
           font-family: 'Fraunces', serif;
           font-variation-settings: 'opsz' 72;
           font-weight: 500;
-          font-size: 20px;
+          font-size: 24px;
           margin: 0;
           letter-spacing: -0.01em;
           color: var(--ink);
         }
         .modal-kicker {
           font-family: 'Geist Mono', monospace;
-          font-size: 10px;
+          font-size: 12px;
           text-transform: uppercase;
           letter-spacing: 0.12em;
           color: var(--ink-muted);
@@ -1393,7 +1441,7 @@ ${swatchRows}
         }
         .format-tab {
           font-family: 'Instrument Sans', sans-serif;
-          font-size: 12px;
+          font-size: 14.4px;
           font-weight: 500;
           padding: 10px 14px;
           color: var(--ink-muted);
@@ -1408,7 +1456,7 @@ ${swatchRows}
           border-bottom-color: var(--accent);
         }
         .format-hint {
-          font-size: 11px;
+          font-size: 13.2px;
           color: var(--ink-muted);
           margin-bottom: 10px;
           line-height: 1.45;
@@ -1423,7 +1471,7 @@ ${swatchRows}
           width: 100%;
           min-height: 220px;
           font-family: 'Geist Mono', monospace;
-          font-size: 12px;
+          font-size: 14.4px;
           line-height: 1.5;
           border: 1px solid var(--rule-strong);
           background: var(--surface);
@@ -1442,7 +1490,7 @@ ${swatchRows}
           align-items: center;
           gap: 10px;
         }
-        .modal-foot .note { font-size: 11px; color: var(--ink-muted); max-width: 38ch; line-height: 1.45; }
+        .modal-foot .note { font-size: 13.2px; color: var(--ink-muted); max-width: 38ch; line-height: 1.45; }
         .modal-foot .actions { display: flex; gap: 6px; }
       `}</style>
 
@@ -1609,6 +1657,17 @@ ${swatchRows}
             )}
           </div>
 
+          {/* support */}
+          <div className="section">
+            <div className="section-kicker">
+              <span>Support</span>
+            </div>
+            <p className="support-text">
+              If Chromatography has been useful, a small tip means a lot — suggested £3 per palette.
+            </p>
+            <KofiButton />
+          </div>
+
           {/* adjustments */}
           {selected && (
             <div className="section">
@@ -1750,7 +1809,7 @@ ${swatchRows}
           </div>
         )}
 
-        {/* footer — tech notes */}
+        {/* footer — tech notes + bio */}
         <div className="footer">
           <p className="footer-body">
             <b>Chromatography</b> is a desktop tool for building colour palettes from photographs.
@@ -1760,6 +1819,21 @@ ${swatchRows}
             are flagged; the displayed colour is the gamut-clamped approximation. Contrast readouts use <b>APCA</b> (the algorithm drafted for WCAG 3),
             which is meaningfully more accurate than the legacy <code>WCAG 2.1</code> ratio for real-world text-on-background pairs.
             All computation runs locally; nothing is uploaded.
+          </p>
+          <p className="footer-bio">
+            <b>Jayden Macklin-Cordes</b> is a linguist researching language evolution. He built Chromatography
+            to bring a personal touch — drawn from his own photographs — to academic figures and web projects.
+            He has a weakness for good typography, design, and data visualisation.{' '}
+            <a href="https://macklin-cordes.com/" target="_blank" rel="noreferrer">macklin-cordes.com</a>
+            <br />
+            If you've enjoyed the app, please consider{' '}
+            <a href="https://ko-fi.com/Z8Z61Y87TQ" target="_blank" rel="noreferrer">supporting the work</a>.
+            <span className="footer-links">
+              {' '}· Chromatography is open source on{' '}
+              <a href="https://github.com/JaydenM-C/chromatography/tree/main" target="_blank" rel="noreferrer">GitHub</a>
+              {' '}·{' '}
+              <a href="https://github.com/JaydenM-C/chromatography/blob/main/LICENSE" target="_blank" rel="noreferrer">GNU GPL v3</a>
+            </span>
           </p>
         </div>
 
