@@ -50,7 +50,7 @@ Contrast scoring uses APCA rather than the WCAG 2.x ratio. APCA — the Accessib
 
 ## Licence
 
-MIT.
+GNU GPL v3.
 
 ## Acknowledgements
 
