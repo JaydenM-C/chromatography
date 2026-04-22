@@ -1101,6 +1101,12 @@ ${swatchRows}
           align-items: baseline;
           gap: 4px;
         }
+        .sort-row {
+          display: flex;
+          align-items: baseline;
+          gap: 4px;
+          margin-bottom: 8px;
+        }
         .sort-lbl {
           color: var(--ink-faint);
           margin-right: 2px;
@@ -1581,7 +1587,7 @@ ${swatchRows}
               <span className="lbl">k</span>
               <input
                 type="range"
-                min="3" max="12" step="1"
+                min="2" max="12" step="1"
                 value={k}
                 onChange={(e) => setK(parseInt(e.target.value))}
               />
@@ -1604,19 +1610,17 @@ ${swatchRows}
           <div className="section">
             <div className="section-kicker">
               <span>Palette</span>
-              <span className="right">
-                {samples.length > 1 && (
-                  <span className="sort-menu">
-                    <span className="sort-lbl">sort</span>
-                    <button className="sort-btn" onClick={() => sortBy('hue')} title="Sort by hue">hue</button>
-                    <button className="sort-btn" onClick={() => sortBy('light')} title="Sort by lightness, dark → light">light</button>
-                    <button className="sort-btn" onClick={() => sortBy('chroma')} title="Sort by chroma, saturated → muted">chr</button>
-                    <button className="sort-btn" onClick={() => sortBy('weight')} title="Sort by pixel weight">wt</button>
-                  </span>
-                )}
-                <span style={{marginLeft: samples.length > 1 ? 8 : 0}}>{samples.length} {samples.length === 1 ? 'swatch' : 'swatches'}</span>
-              </span>
+              <span className="right">{samples.length} {samples.length === 1 ? 'swatch' : 'swatches'}</span>
             </div>
+            {samples.length > 1 && (
+              <div className="sort-row">
+                <span className="sort-lbl">sort</span>
+                <button className="sort-btn" onClick={() => sortBy('hue')} title="Sort by hue">hue</button>
+                <button className="sort-btn" onClick={() => sortBy('light')} title="Sort by lightness, dark → light">light</button>
+                <button className="sort-btn" onClick={() => sortBy('chroma')} title="Sort by chroma, saturated → muted">chr</button>
+                <button className="sort-btn" onClick={() => sortBy('weight')} title="Sort by pixel weight">wt</button>
+              </div>
+            )}
             {samples.length === 0 ? (
               <div className="palette-empty">
                 <em>Empty.</em> Extract, or click anywhere on the image to sample.
