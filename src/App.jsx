@@ -893,6 +893,14 @@ ${swatchRows}
           color: var(--ink-muted);
           letter-spacing: 0.12em;
           text-transform: uppercase;
+          text-decoration: none;
+          transition: color 120ms ease;
+        }
+        a.brand-sub:hover {
+          color: var(--ink);
+          text-decoration: underline;
+          text-underline-offset: 3px;
+          text-decoration-thickness: 1px;
         }
         .header-actions { display: flex; gap: 4px; align-items: center; }
 
@@ -1365,6 +1373,12 @@ ${swatchRows}
           color: var(--ink);
           font-weight: 500;
         }
+        .footer-body a {
+          color: var(--ink-muted);
+          text-decoration: underline;
+          text-underline-offset: 2px;
+        }
+        .footer-body a:hover { color: var(--ink); }
         .footer-body code {
           font-family: 'Geist Mono', monospace;
           font-size: 12px;
@@ -1505,7 +1519,13 @@ ${swatchRows}
         <div className="header">
           <div className="brand">
             <div className="brand-mark serif">Chromatography</div>
-            <div className="brand-sub">palette ∙ field tool</div>
+            <a
+              className="brand-sub"
+              href="https://macklin-cordes.com/posts/2026/04/chromatography/"
+              target="_blank"
+              rel="noreferrer"
+              title="About Chromatography — background and how to use it"
+            >palette ∙ field tool</a>
           </div>
           <div className="header-actions">
             {image && (
@@ -1822,7 +1842,10 @@ ${swatchRows}
             Sliders edit in <b>OKLCH</b>: lightness, chroma, hue. Colours pushed outside the sRGB gamut by slider edits
             are flagged; the displayed colour is the gamut-clamped approximation. Contrast readouts use <b>APCA</b> (the algorithm drafted for WCAG 3),
             which is meaningfully more accurate than the legacy <code>WCAG 2.1</code> ratio for real-world text-on-background pairs.
-            All computation runs locally; nothing is uploaded.
+            All computation runs locally; nothing is uploaded.{' '}
+            <a href="https://macklin-cordes.com/posts/2026/04/chromatography/" target="_blank" rel="noreferrer">
+              Read more on the blog →
+            </a>
           </p>
           <p className="footer-bio">
             <b>Jayden Macklin-Cordes</b> is a linguist researching language evolution. He built Chromatography

@@ -38,7 +38,7 @@ Output is written to `dist/`. This directory can be served by any static file ho
 
 ## Deployment
 
-The project is configured for zero-configuration deployment to Cloudflare Pages, Netlify, Vercel, or any comparable static-site host. The build command is `npm run build` and the output directory is `dist/`.
+The project is configured for zero-configuration deployment to Cloudflare Pages (or any static site host). The build command is `npm run build` and the output directory is `dist/`.
 
 ## Technical notes
 
@@ -54,4 +54,4 @@ GNU GPL v3.
 
 ## Acknowledgements
 
-OKLab and OKLCH are due to [Björn Ottosson](https://bottosson.github.io/posts/oklab/). APCA is due to [Andrew Somers](https://git.myndex.com/). The aesthetic register of the interface — cream paper, slate rule, rust accent — is a deliberate homage to the typographic tradition of the field notebook.
+OKLab and OKLCH are due to [Björn Ottosson](https://bottosson.github.io/posts/oklab/). APCA is due to [Andrew Somers](https://git.myndex.com/). The aesthetic register of the interface — cream paper, slate rule, rust accent — is an homage to the typographic tradition of the field notebook.
